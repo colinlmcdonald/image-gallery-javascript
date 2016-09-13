@@ -1,0 +1,90 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+#pictures-container {
+  height: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  height: 33%;
+}
+
+#pic-1 {
+  background: url('../pictures/1.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-2 {
+  background: url('../pictures/2.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-3 {
+  background: url('../pictures/3.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-4 {
+  background: url('../pictures/4.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-5 {
+  background: url('../pictures/5.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-6 {
+  background: url('../pictures/6.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-7 {
+  background: url('../pictures/7.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-8 {
+  background: url('../pictures/8.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-9 {
+  background: url('../pictures/9.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-10 {
+  background: url('../pictures/10.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-11 {
+  background: url('../pictures/11.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
+
+#pic-12 {
+  background: url('../pictures/12.png') no-repeat;
+  background-size: 100%;
+  flex: 1;
+}
