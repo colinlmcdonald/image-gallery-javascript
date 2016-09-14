@@ -1,4 +1,5 @@
-import dm from './domManipulation'
+import dm from './domManipulation';
+import '../styles/styles.scss';
 
 window.onload = (() => {
   const pictures = new dm('pictures-container');

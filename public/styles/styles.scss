@@ -1,0 +1,53 @@
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+
+@mixin flex-direction($val) {
+  -webkit-box-ordinal-group: $val;  
+  -moz-box-ordinal-group: $val;     
+  -ms-flex-order: $val;     
+  -webkit-order: $val;  
+  flex-direction: $val;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+#pictures-container {
+  height: 100%;
+}
+
+.row {
+  @include flexbox();
+  @include flex-direction(row);
+  height: 33%;
+}
+
+.picture {
+  background-size: 100%;
+  @include flex(1);
+}
+
+@for $i from 1 through 12 {
+  #pic-#{$i} {
+    background: url('../pictures/#{$i}.png') no-repeat;
+  }
+}

@@ -1,2 +1,4 @@
 /node_modules/
 /public/build/
+/.sass-cache/
+.DS_Store
