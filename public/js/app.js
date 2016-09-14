@@ -1,39 +1,14 @@
-'use strict';
+import dm from './domManipulation'
 
 window.onload = (() => {
-  class jQuery {
-    constructor(node) {
-      this.node = document.getElementById(node);
-      this.events = {};
-    }
-
-    addEvent(event, func) {
-      this.node.addEventListener(event, func);
-      this.events[event] = func;
-    }
-
-    removeEvent(event) {
-      const eventFunc = this.events[event];
-      this.node.removeEventListener(event, eventFunc);
-    }
-
-    getStyles() {
-      return window.getComputedStyle(this.node);
-    }
-
-    setStyle(css, value) {
-      this.node.style[css] = value;
-    }
-  };
-
-  const pictures = new jQuery('pictures-container');
+  const pictures = new dm('pictures-container');
 
   let currentPicture, hoverPicture;
 
   pictures.addEvent('mousedown', (e) => {
-    currentPicture = new jQuery(e.target.id);
+    currentPicture = new dm(e.target.id);
     pictures.addEvent('mouseover', (e) => {
-      hoverPicture = new jQuery(e.target.id);
+      hoverPicture = new dm(e.target.id);
       changeImages(currentPicture, hoverPicture);
     });
   });
