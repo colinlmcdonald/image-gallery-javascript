@@ -1,74 +1,68 @@
 import $ from './jQuery';
 
 export default class ImageGallery{
-  constructor(images, container) {
+  constructor(images) {
     this.imageData = images;
-    this.container = container;
-    this.createImageNodes()
-      .then(images => this.addImages(images))
+    this.images = this.createImageNodes();
+    this.container = this.addImages();
+    this.addDragEvents(this.container);
   }
 
   createImageNodes() {
-    return new Promise((resolve, reject) => {
-      this.images = this.imageData.map(image => {
-        const newImage = new $('div');
-        newImage.setStyle('backgroundImage', image.url);
-        newImage.node.className = 'picture';
-        newImage.node.draggable = true;
-        return newImage.addEvent('dragstart', (e) => {
-          this.dragStartNode = e.target;
-        })
-        .then(newImage.addEvent('dragover', (e) => {
-          this.dragOverNode = e.target;
-        }))
-        .then(newImage.addEvent('dragexit'), (e) => {
-          this.dragExitNode = e.target;
-        })
-        .then(img => newImage)
-      })
-      resolve(Promise.all(this.images))
+    return this.imageData.map((image, i) => {
+      const newImage = new $('img');
+      newImage.node.src = image.url;
+      newImage.node.className = 'picture';
+      newImage.node.dataset.imageId = i;
+
+      this.addDragEvents(newImage)
+      return newImage;
     })
   }
 
-  addImages(images) {
-    return new Promise((resolve, reject) => {
-      const picContainer = new $('pictures-container');
-      let row = new $('div');
-      row.node.className = 'row';
-      images.forEach((image, i) => {
-        row.addChild(image.node)
-        if ((i + 1) % 4 === 0) {
-          picContainer.addChild(row.node)
-          row = new $('div');
-          row.node.className = 'row';
-        } 
-      })
-      resolve(picContainer);
+  addImages() {
+    const picContainer = new $('pictures-container');
+    let row = new $('div');
+    row.node.className = 'row';
+    this.images.forEach((image, i) => {
+      row.addChild(image.node)
+      if ((i + 1) % 4 === 0) {
+        picContainer.addChild(row.node)
+        row = new $('div');
+        row.node.className = 'row';
+      } 
     })
+    return picContainer;
   }
 
-  setDragStart(node) {
+  addDragEvents(picContainer) {
+    this.currentPicture;
+    this.hoverPicture;
 
+    picContainer.addEvent('mousedown', (e) => {
+      this.currentPicture = e.target;
+    });
+    picContainer.addEvent('dragenter', (e) => {
+        e.stopPropagation();
+      if (e.target.nodeName === 'IMG') {
+        if (this.hoverPicture) {
+          this.hoverPicture.style.opacity = 1;
+        }
+        this.hoverPicture = e.target;
+        this.hoverPicture.style.opacity = 0;
+      }
+    });
+    picContainer.addEvent('dragend', (e) => {
+      e.stopPropagation();
+      this.changeImages(this.currentPicture, this.hoverPicture);
+    })
+
+  }
+  changeImages(cp, hp) {
+    hp.style.opacity = 1;
+    let temp = cp.src;
+    cp.src = hp.src;
+    hp.src = temp;
+    // this.currentPicture = this.hoverPicture;
   }
 }
-
-  // let currentPicture, hoverPicture;
-
-  // picContainer.addEvent('mousedown', (e) => {
-  //   currentPicture = new dm(e.target.id);
-  //   picContainer.addEvent('mouseover', (e) => {
-  //     hoverPicture = new dm(e.target.id);
-  //     changeImages(currentPicture, hoverPicture);
-  //   });
-  // });
-
-  // picContainer.addEvent('mouseup', (e) => {
-  //   picContainer.removeEvent('mouseover');
-  // });
-
-  // function changeImages(cp, hp) {
-  //   let temp = cp.getStyles().backgroundImage;
-  //   cp.setStyle('backgroundImage', hp.getStyles().backgroundImage);
-  //   hp.setStyle('backgroundImage', temp)
-  //   currentPicture = hoverPicture;
-  // };

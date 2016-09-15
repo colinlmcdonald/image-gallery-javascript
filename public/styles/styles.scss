@@ -15,11 +15,13 @@
 }
 
 @mixin flex-direction($val) {
-  -webkit-box-ordinal-group: $val;  
-  -moz-box-ordinal-group: $val;     
-  -ms-flex-order: $val;     
-  -webkit-order: $val;  
+  -ms-flex-direction: $val;
+  -webkit-flex-direction: $val;
   flex-direction: $val;
+}
+
+@mixin flex-wrap($val) {
+  flex-wrap: $val;
 }
 
 html, body {
@@ -38,17 +40,9 @@ body {
 .row {
   @include flexbox();
   @include flex-direction(row);
-  height: 33%;
 }
 
 .picture {
-  background-size: 100%;
-  background-repeat: no-repeat;
   @include flex(1);
-}
-
-@for $i from 1 through 12 {
-  #pic-#{$i} {
-    background: url('../pictures/#{$i}.png') no-repeat;
-  }
+  max-width: 100%;
 }
