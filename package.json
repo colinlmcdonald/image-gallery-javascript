@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "test": "test",
-    "build": "./node_modules/.bin/babel public/js -d public/lib",
     "start": "node server.js"
   },
   "repository": {
