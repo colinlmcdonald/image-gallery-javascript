@@ -18,15 +18,6 @@ export default class jQuery {
       this.node.removeEventListener(event, eventFunc);
     }
 
-    getStyle(css, value) {
-      return this.node.style[css];
-    }
-
-    setStyle(css, value) {
-      this.node.style[css] = value;
-      return this.node.style[css];
-    }
-
     addChild(node) {
       this.node.appendChild(node);
       return node;

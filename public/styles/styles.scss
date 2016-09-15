@@ -40,9 +40,10 @@ body {
 .row {
   @include flexbox();
   @include flex-direction(row);
+  @include flex-wrap(wrap);
 }
 
 .picture {
-  @include flex(1);
-  max-width: 100%;
+  display: inline-block;
+  width: 25%;
 }

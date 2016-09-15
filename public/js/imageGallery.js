@@ -50,19 +50,19 @@ export default class ImageGallery{
         }
         this.hoverPicture = e.target;
         this.hoverPicture.style.opacity = 0;
+        this.changeImages(this.currentPicture, this.hoverPicture);
       }
     });
     picContainer.addEvent('dragend', (e) => {
       e.stopPropagation();
-      this.changeImages(this.currentPicture, this.hoverPicture);
+      this.currentPicture.style.opacity = 1;
     })
-
   }
+
   changeImages(cp, hp) {
-    hp.style.opacity = 1;
     let temp = cp.src;
     cp.src = hp.src;
     hp.src = temp;
-    // this.currentPicture = this.hoverPicture;
+    this.currentPicture = this.hoverPicture;
   }
 }
